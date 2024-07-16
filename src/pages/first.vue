@@ -1,6 +1,6 @@
 <template>
-  <el-container style="height:800px; width: 100%; position: absolute; left: 0; top: 0;">
-    <el-header style="height:150px; width: 100%; margin-top: 50px">
+  <el-container style="width: 100%; position: absolute; left: 0; top: 0;">
+    <el-header style="height: 150px; width: 100%; margin-top: 50px">
       <el-row>
         <text class="TEXT">在线 APK 分析器</text>
       </el-row>
@@ -23,7 +23,7 @@
                 :on-progress="handleProgress"
                 :before-upload="handleBeforeUpload"
                 :on-error="handleErrorUpload"
-                :accept="'.apk,.jpg,.jpeg,.png,'"
+                :accept="'.apk'"
             >
               <div style="text-align: center; position: relative; top:60px">
                 <el-button type="primary" color="#725feb" size="small" style="width: 220px;height: 60px">
@@ -73,7 +73,7 @@
       </el-container>
 
       <div class="report" v-show="showUploadedFileTable">
-        <el-table :data="uploadFileTableData" style="width: 80%">
+        <el-table :data="uploadFileTableData" style="width: 80%" stripe border>
           <el-table-column prop="name" label="APK文件名" width="370" />
           <el-table-column prop="progress" label="上传进度" >
             <template #default="scope">
@@ -308,7 +308,6 @@ const UploadURL = (url: string) => {
 
 .upload-container{
   width: 100%;
-  height: 800px;
   text-align: center;
   display: flex;
   padding:0
@@ -336,11 +335,12 @@ const UploadURL = (url: string) => {
 
 .report{
   width: 100%;
-  height: 400px;
+  padding-bottom: 50px;
   display: flex;
   justify-content: center;
   position:absolute;
-  top:700px
+  top:700px;
+
 }
 
 strong{

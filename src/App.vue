@@ -16,7 +16,7 @@ const ListClick = ()=> {
       <el-header class="head">
           <el-container >
             <el-aside style="text-align: center;padding-top: 10px;height: 100%" >
-              <img src="@/assets/alby.svg " alt="My SVG"  style="top:5px;position: relative; right:5px;width: calc(1.275rem + .3vw)"/>
+              <img src="@/assets/alby.svg " alt="My SVG" style="top:5px;position: relative; right:5px;width: calc(1.275rem + .3vw)"/>
               <text class="title">ApkDetector</text>
             </el-aside>
             <el-main>
@@ -52,7 +52,6 @@ const ListClick = ()=> {
 <style scoped>
 .home{
   width: 99vw;
-  height: 1200px;
   position: absolute;
   padding:0;
   top: 0;

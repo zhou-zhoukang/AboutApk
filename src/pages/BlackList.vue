@@ -61,10 +61,10 @@ const showReport = (analysisNo: string) => {
   <el-container>
     <el-aside class="Side">
       <div class="Title">
-        <text>App黑名单</text>
+        <strong>App黑名单</strong>
       </div>
       <div class="Table">
-        <el-table :data="blackList" style="width: 90%">
+        <el-table :data="blackList" style="width: 90%" stripe border>
           <el-table-column prop="apkName" label="文件名" width="200" />
           <el-table-column prop="createTime" label="检定时间" width="180" />
           <el-table-column prop="type" label="类别" />
@@ -84,10 +84,10 @@ const showReport = (analysisNo: string) => {
 
     <el-main class="Side">
       <div class="Title">
-        <text>App白名单</text>
+        <strong>App白名单</strong>
       </div>
       <div class="Table">
-        <el-table :data="whiteList" style="width: 90%">
+        <el-table :data="whiteList" style="width: 90%" stripe border>
           <el-table-column prop="apkName" label="文件名" width="320" />
           <el-table-column prop="createTime" label="检定时间" width="180" />
           <el-table-column fixed="right" label="操作">
@@ -111,7 +111,7 @@ const showReport = (analysisNo: string) => {
 <style scoped>
 .Side{
   width: 50%;
-  height: 105vh;
+  height: 106vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
