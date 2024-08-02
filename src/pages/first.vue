@@ -2,10 +2,10 @@
   <el-container style="width: 100%; position: absolute; left: 0; top: 0;">
     <el-header style="height: 150px; width: 100%; margin-top: 50px">
       <el-row>
-        <text class="TEXT">在线 APK 分析器</text>
+        <text class="TEXT">ScamDetector: 涉诈 APK 分析工具</text>
       </el-row>
       <el-row>
-        <text  class="content">使用我们的在线 APK 分析器，您可以轻松分析和优化 APK，快速识别出涉诈，涉赌，涉黄应用。</text>
+        <text class="content">使用 ScamDetector，您可以轻松分析 APK，快速识别出涉诈，涉赌，涉黄应用，进而保卫您的安全。</text>
       </el-row>
     </el-header>
     <el-main class="upload-container">

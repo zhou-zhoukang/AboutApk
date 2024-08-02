@@ -14,19 +14,23 @@ const ListClick = ()=> {
   <div class="home">
     <el-container class="container">
       <el-header class="head">
-          <el-container >
+          <el-container>
             <el-aside style="text-align: center;padding-top: 10px;height: 100%" >
               <img src="@/assets/alby.svg " alt="My SVG" style="top:5px;position: relative; right:5px;width: calc(1.275rem + .3vw)"/>
               <text class="title">ApkDetector</text>
             </el-aside>
             <el-main>
-              <el-row :gutter="20" font-size="calc(1rem + .3vw)">
-                <el-col :span="3" ><router-link to="/pages/first" >
-                  <el-text color="black" style="font-size: 15px">APK解析</el-text>
-                </router-link></el-col>
-                <el-col :span="3"><router-link to="/pages/BlackList">
-                  <el-text color="black" style="font-size: 15px">黑白名单</el-text>
-                </router-link></el-col>
+              <el-row :gutter="30" font-size="calc(1rem + .3vw)">
+                <el-col :span="3">
+                  <router-link to="/pages/first" class="navigation-link">
+                    APK解析
+                  </router-link>
+                </el-col>
+                <el-col :span="3">
+                  <router-link to="/pages/BlackList" class="navigation-link">
+                    黑白名单
+                  </router-link>
+                </el-col>
               </el-row>
             </el-main>
           </el-container>
@@ -49,6 +53,7 @@ const ListClick = ()=> {
   -moz-osx-font-smoothing: grayscale;
 }
 </style>
+
 <style scoped>
 .home{
   width: 99vw;
@@ -66,6 +71,7 @@ const ListClick = ()=> {
   width: 100%;
   padding:0
 }
+
 .head{
   height: 70px;
   width: 100%;
@@ -75,6 +81,7 @@ const ListClick = ()=> {
   padding-bottom: 5px;
   background-color: white;
 }
+
 .outside{
   width: 100%;
   height: auto;
@@ -86,5 +93,16 @@ const ListClick = ()=> {
   font-size: calc(1.275rem + .3vw);
   font-weight: 600;
   letter-spacing:-1px;
+}
+
+.navigation-link {
+  font-size: 20px;
+  color: black;
+}
+.navigation-link:hover{
+  color: white;
+  background-color: #725feb;
+  padding: 15px;
+  border-radius: 4px;
 }
 </style>

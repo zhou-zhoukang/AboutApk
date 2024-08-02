@@ -46,8 +46,7 @@ onMounted(() => {
         })
       })
       .catch(error => {
-        console.error('Error uploading file:', error);
-        alert(error)
+        console.error('黑白名单获取失败:', error);
       });
 })
 
