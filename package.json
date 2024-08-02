@@ -1,7 +1,9 @@
 {
-  "name": "apk_detector",
+  "name": "scam-detector",
   "version": "3.3",
   "private": true,
+  "author": "钱包守护者队",
+  "description": "ScamDetector 是一个检测安卓应用是否涉诈的软件分析工具",
   "type": "module",
   "scripts": {
     "dev": "vite",
