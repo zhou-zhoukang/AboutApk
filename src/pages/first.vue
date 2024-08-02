@@ -1,11 +1,11 @@
 <template>
   <el-container style="width: 100%; position: absolute; left: 0; top: 0;">
-    <el-header style="height: 150px; width: 100%; margin-top: 50px">
+    <el-header style="height: 150px; width: 100%; margin-top: 10px">
       <el-row>
-        <text class="TEXT">ScamDetector: 涉诈 APK 分析工具</text>
+        <text class="big-title">ScamDetector</text>
       </el-row>
       <el-row>
-        <text class="content">使用 ScamDetector，您可以轻松分析 APK，快速识别出涉诈，涉赌，涉黄应用，进而保卫您的安全。</text>
+        <text class="content">ScamDetector 是一款基于软件分析与大模型提示工程的涉诈APP检测工具。使用 ScamDetector，您可以轻松分析安卓应用程序，快速检测出涉诈，涉赌，涉黄应用。</text>
       </el-row>
     </el-header>
     <el-main class="upload-container">
@@ -299,11 +299,11 @@ const UploadURL = (url: string) => {
   color:gray;
 }
 
-.TEXT{
+.big-title {
   text-align: center;
   width: 100%;
-  font-size: 40px;
-  font-weight: 600;
+  font-size: 60px;
+  font-weight: bold;
 }
 
 .upload-container{

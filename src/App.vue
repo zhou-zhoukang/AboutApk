@@ -16,8 +16,8 @@ const ListClick = ()=> {
       <el-header class="head">
           <el-container>
             <el-aside style="text-align: center;padding-top: 10px;height: 100%" >
-              <img src="@/assets/alby.svg " alt="My SVG" style="top:5px;position: relative; right:5px;width: calc(1.275rem + .3vw)"/>
-              <text class="title">ApkDetector</text>
+              <img src="@/assets/alby.svg" alt="logo" style="top:5px;position: relative; right:5px;width: calc(1.275rem + .3vw)"/>
+              <text class="title">ScamDetector</text>
             </el-aside>
             <el-main>
               <el-row :gutter="30" font-size="calc(1rem + .3vw)">
