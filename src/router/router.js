@@ -1,24 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import app from '../App.vue'
-import blacklist from '../pages/BlackList.vue'
-import first from '../pages/first.vue'
+import BlackListPage from '../pages/BlackListPage.vue'
+import HomePage from '../pages/HomePage.vue'
 
 const routes = [
-    { path: '/', redirect: '/pages/first' },
+    { path: '/', redirect: '/page/home' },
     {
-        path: '/App',
-        name: 'app',
-        component: app
+        path: '/page/home',
+        name: 'Home',
+        component: HomePage
     },
     {
-        path: '/pages/BlackList',
-        name: ' BlackList',
-        component: blacklist
-    },
-    {
-        path: '/pages/first',
-        name: 'first',
-        component: first
+        path: '/page/blacklist',
+        name: 'BlackList',
+        component: BlackListPage
     },
 ]
 

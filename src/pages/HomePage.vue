@@ -65,7 +65,7 @@
               </div>
             </el-upload>
             <el-row style="justify-content: center;top:20px;height: 100px;width: 100%" >
-              <el-input v-model="urlInput" style="width: 65%;height: 40px;margin-right: 20px;" placeholder="请输入 APK 所在的 URL" />
+              <el-input v-model="urlInput" style="width: 65%;height: 40px;margin-right: 20px;" placeholder="请输入 APK 下载链接" />
               <el-button style="position:relative;top:5px" type="primary" color="#725feb" @click="UploadURL(urlInput)">上传</el-button>
             </el-row>
           </el-card>
@@ -114,7 +114,7 @@ import type {
 import {CircleCheck, Document, FullScreen} from '@element-plus/icons-vue'
 // import ImageUtils from '@/utils/ImageUtils'
 import { ElMessageBox } from 'element-plus'
-import Report from "@/pages/Report.vue";
+import Report from "@/pages/ReportPage.vue";
 import AnalysisService from "@/service/AnalysisService";
 
 const forceShowReport = ref<boolean>(false)  // 用于强制显示 Report
@@ -274,6 +274,12 @@ const UploadURL = (url: string) => {
 }
 </script>
 
+<script lang="ts">
+export default {
+  name: "HomePage"
+}
+</script>
+
 <style>
 .UploadCard{
   width: 100%;
@@ -283,7 +289,7 @@ const UploadURL = (url: string) => {
 }
 
 .UploadCard:hover {
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 1);
   transform: translateX(-4px)translateY(-3px);
 }
 

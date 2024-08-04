@@ -1,33 +1,21 @@
-<script setup>
-import {ref} from "vue";
-
-let Pageshow = ref(true)
-const ApkClick= ()=> {
-  Pageshow = true
-}
-const ListClick = ()=> {
-  Pageshow = false
-}
-</script>
-
 <template>
   <div class="home">
     <el-container class="container">
       <el-header class="head">
           <el-container>
             <el-aside style="text-align: center;padding-top: 10px;height: 100%" >
-              <img src="@/assets/alby.svg" alt="logo" style="top:5px;position: relative; right:5px;width: calc(1.275rem + .3vw)"/>
+              <img src="@/assets/logo.svg" alt="ScamDetector Logo" style="top:5px;position: relative; right:5px;width: calc(1.275rem + .3vw)"/>
               <text class="title">ScamDetector</text>
             </el-aside>
             <el-main>
               <el-row :gutter="30" font-size="calc(1rem + .3vw)">
                 <el-col :span="3">
-                  <router-link to="/pages/first" class="navigation-link">
+                  <router-link to="/page/home" class="navigation-link">
                     APK解析
                   </router-link>
                 </el-col>
                 <el-col :span="3">
-                  <router-link to="/pages/BlackList" class="navigation-link">
+                  <router-link to="/page/blacklist" class="navigation-link">
                     黑白名单
                   </router-link>
                 </el-col>
@@ -42,8 +30,13 @@ const ListClick = ()=> {
   </div>
 </template>
 
-<style>
+<script lang="ts">
+export default {
+  name: "APP"
+}
+</script>
 
+<style>
 #app{
   padding: 0 0 0 0;
   width: 100vw;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
 import AnalysisService from '@/service/AnalysisService'
-import Report from "@/pages/Report.vue";
+import Report from "@/pages/ReportPage.vue";
 
 interface BlackListData {
   id: number;
@@ -53,6 +53,12 @@ onMounted(() => {
 const showReport = (analysisNo: string) => {
   analysisNum.value = analysisNo
   forceShowReport.value = !forceShowReport.value
+}
+</script>
+
+<script lang="ts">
+export default {
+  name: "BlackListPage"
 }
 </script>
 
