@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <el-container class="container">
-      <el-header class="head">
+      <el-header class="header">
           <el-container>
             <el-aside style="text-align: center;padding-top: 10px;height: 100%" >
               <img src="@/assets/logo.svg" alt="ScamDetector Logo" style="top:5px;position: relative; right:5px;width: calc(1.275rem + .3vw)"/>
@@ -23,7 +23,7 @@
             </el-main>
           </el-container>
       </el-header>
-      <el-main class="outside">
+      <el-main class="main">
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -51,7 +51,6 @@ export default {
 .home{
   width: 99vw;
   position: absolute;
-  padding:0;
   top: 0;
   bottom: 0;
   left: 0;
@@ -62,22 +61,18 @@ export default {
 .container{
   height: 100%;
   width: 100%;
-  padding:0
 }
 
-.head{
+.header{
   height: 70px;
   width: 100%;
   border-color: #e9ecef;
   border-bottom:1px solid #dee2e6;
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  background-color: white;
 }
 
-.outside{
+.main{
   width: 100%;
-  height: auto;
+  height: 100%;
   position: relative;
 }
 

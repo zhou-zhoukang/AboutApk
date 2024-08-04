@@ -54,6 +54,10 @@ const showReport = (analysisNo: string) => {
   analysisNum.value = analysisNo
   forceShowReport.value = !forceShowReport.value
 }
+
+const getHeaderRowClass = () => {
+  return "header-row"
+}
 </script>
 
 <script lang="ts">
@@ -63,13 +67,19 @@ export default {
 </script>
 
 <template>
-  <el-container>
+  <el-container class="Container">
     <el-aside class="Side">
       <div class="Title">
         <strong>App黑名单</strong>
       </div>
       <div class="Table">
-        <el-table :data="blackList" style="width: 90%" stripe border>
+        <el-table
+            :data="blackList"
+            stripe border
+            height="100%"
+            style="width: 98%"
+            :header-row-class-name="getHeaderRowClass"
+        >
           <el-table-column prop="apkName" label="文件名" width="200" />
           <el-table-column prop="createTime" label="检定时间" width="180" />
           <el-table-column prop="type" label="类别" />
@@ -87,12 +97,18 @@ export default {
       </div>
     </el-aside>
 
-    <el-main class="Side">
+    <el-aside class="Side">
       <div class="Title">
         <strong>App白名单</strong>
       </div>
       <div class="Table">
-        <el-table :data="whiteList" style="width: 90%" stripe border>
+        <el-table
+            :data="whiteList"
+            stripe border
+            height="100%"
+            style="width: 98%"
+            :header-row-class-name="getHeaderRowClass"
+        >
           <el-table-column prop="apkName" label="文件名" width="320" />
           <el-table-column prop="createTime" label="检定时间" width="180" />
           <el-table-column fixed="right" label="操作">
@@ -107,31 +123,42 @@ export default {
           </el-table-column>
         </el-table>
       </div>
-    </el-main>
+    </el-aside>
   </el-container>
 
   <Report :analysis-no="analysisNum" :force-show="forceShowReport"/>
 </template>
 
 <style scoped>
+.Container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
 .Side{
+  height: 100%;
   width: 50%;
-  height: 106vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0;
-  position: relative;
 }
+
 .Title{
   text-align: center;
-  height: 100px;
-  width: 100%;
+  height: 7%;
 }
+
 .Table{
   width: 100%;
-  height: 100vh;
+  height: 93%;
   display: flex;
   justify-content: center;
+}
+
+.el-table >>> .header-row {
+  background: #725feb;
+  color: black;
+  font-size: 20px;
 }
 </style>
