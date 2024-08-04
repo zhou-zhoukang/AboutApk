@@ -12,7 +12,7 @@
       <el-container>
         <el-aside style="width: 50%;height: 450px;display: flex;justify-content: center;flex-direction: column;align-items: center;">
           <el-card shadow="hover" class="UploadCard">
-            <el-text  class="title">离线分析模式</el-text>
+            <el-text class="title">离线分析模式</el-text>
             <el-upload
                 v-model:file-list="fileList"
                 class="uploadBox" drag

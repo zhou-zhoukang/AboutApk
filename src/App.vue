@@ -1,38 +1,95 @@
+<script setup>
+import {Setting} from "@element-plus/icons-vue";
+import { useDark, useToggle } from '@vueuse/core'
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
+</script>
+
 <template>
   <div class="home">
     <el-container class="container">
       <el-header class="header">
-          <el-container>
-            <el-aside style="text-align: center;padding-top: 10px;height: 100%" >
-              <img src="/logo.svg" alt="ScamDetector Logo" style="top:5px;position: relative; right:5px;width: calc(1.275rem + .3vw)"/>
-              <text class="title">ScamDetector</text>
-            </el-aside>
-            <el-main>
-              <el-row :gutter="30" font-size="calc(1rem + .3vw)">
-                <el-col :span="3">
-                  <router-link to="/page/home" class="navigation-link">
-                    APK解析
-                  </router-link>
-                </el-col>
-                <el-col :span="3">
-                  <router-link to="/page/blacklist" class="navigation-link">
-                    黑白名单
-                  </router-link>
-                </el-col>
-              </el-row>
-            </el-main>
-          </el-container>
+        <el-aside
+            style="text-align: center; padding-top: 10px; height: 100%"
+        >
+          <img
+              src="/logo.svg" alt="ScamDetector Logo"
+              style="top:5px; position: relative; right:5px; width: calc(1.275rem + .3vw)"
+          />
+          <text class="title">ScamDetector</text>
+        </el-aside>
+
+        <el-menu
+            :default-active="activeIndex"
+            class="menu"
+            mode="horizontal"
+        >
+          <el-menu-item
+              @click="clickMenu(item)"
+              v-for="item in menuData" :key="item.name"
+              :index="item.name"
+          >
+            <el-icon><component :is="item.icon"></component></el-icon>
+            <span>{{ item.label }}</span>
+          </el-menu-item>
+
+          <el-sub-menu
+              index="2"
+          >
+            <template #title><el-icon><Setting /></el-icon> 设置</template>
+            <el-menu-item
+                index="2-1"
+                @click="toggleDark()"
+            >
+              切换主题
+            </el-menu-item>
+          </el-sub-menu>
+        </el-menu>
       </el-header>
+
       <el-main class="main">
-        <router-view></router-view>
+        <RouterView v-slot="{ Component }">
+          <KeepAlive>
+            <component :is="Component"/>
+          </KeepAlive>
+        </RouterView>
       </el-main>
+
     </el-container>
   </div>
 </template>
 
-<script lang="ts">
+<script>
+import {House, List} from "@element-plus/icons-vue";
+
 export default {
-  name: "APP"
+  name: "APP",
+  data() {
+    return {
+      activeIndex: '1',
+      menuData: [
+        {
+          path: "/page/home",
+          name: "home",
+          label: "APK解析",
+          icon: House
+        },
+        {
+          path: "/page/blacklist",
+          name: "blacklist",
+          label: "黑白名单",
+          icon: List
+        },
+      ]
+    };
+  },
+  methods: {
+    clickMenu(item) {
+      if (this.$route.path !== item.path && !(this.$route.path === '/page/home' && (item.path === '/'))) {
+        this.$router.push(item.path)
+      }
+    }
+  }
 }
 </script>
 
@@ -48,14 +105,13 @@ export default {
 </style>
 
 <style scoped>
-.home{
-  width: 99vw;
+.home {
+  width: 100vw;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #fafafa;
 }
 
 .container{
@@ -63,11 +119,15 @@ export default {
   width: 100%;
 }
 
-.header{
-  height: 70px;
-  width: 100%;
+.header {
+  display: flex;
+  flex-direction: row;
   border-color: #e9ecef;
   border-bottom:1px solid #dee2e6;
+}
+
+.menu {
+  width: 100%;
 }
 
 .main{
@@ -82,16 +142,5 @@ export default {
   font-size: calc(1.275rem + .3vw);
   font-weight: 600;
   letter-spacing:-1px;
-}
-
-.navigation-link {
-  font-size: 20px;
-  color: black;
-}
-.navigation-link:hover{
-  color: white;
-  background-color: #725feb;
-  padding: 15px;
-  border-radius: 4px;
 }
 </style>

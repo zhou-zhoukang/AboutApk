@@ -157,7 +157,6 @@ export default {
 }
 
 .el-table >>> .header-row {
-  background: #725feb;
   color: black;
   font-size: 20px;
 }
