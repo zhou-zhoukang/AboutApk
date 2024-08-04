@@ -7,6 +7,7 @@ const routes = [
     {
         path: '/page/home',
         name: 'Home',
+        meta:{keepAlive: true},
         component: HomePage
     },
     {

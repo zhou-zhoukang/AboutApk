@@ -50,8 +50,9 @@ const toggleDark = useToggle(isDark)
       <el-main class="main">
         <RouterView v-slot="{ Component }">
           <KeepAlive>
-            <component :is="Component"/>
+            <component :is="Component" v-if="$route.meta.keepAlive"/>
           </KeepAlive>
+          <component :is="Component" v-if="!$route.meta.keepAlive"/>
         </RouterView>
       </el-main>
 
