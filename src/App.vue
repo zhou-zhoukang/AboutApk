@@ -4,7 +4,7 @@
       <el-header class="header">
           <el-container>
             <el-aside style="text-align: center;padding-top: 10px;height: 100%" >
-              <img src="@/assets/logo.svg" alt="ScamDetector Logo" style="top:5px;position: relative; right:5px;width: calc(1.275rem + .3vw)"/>
+              <img src="/logo.svg" alt="ScamDetector Logo" style="top:5px;position: relative; right:5px;width: calc(1.275rem + .3vw)"/>
               <text class="title">ScamDetector</text>
             </el-aside>
             <el-main>
@@ -71,6 +71,7 @@ export default {
 }
 
 .main{
+  padding-top: 5px;
   width: 100%;
   height: 100%;
   position: relative;

@@ -80,10 +80,10 @@ export default {
             style="width: 98%"
             :header-row-class-name="getHeaderRowClass"
         >
-          <el-table-column prop="apkName" label="文件名" width="200" />
+          <el-table-column prop="apkName" label="文件名" width="250" />
           <el-table-column prop="createTime" label="检定时间" width="180" />
           <el-table-column prop="type" label="类别" />
-          <el-table-column fixed="right" label="操作" min-width="100">
+          <el-table-column fixed="right" label="操作" min-width="50">
             <template #default="scope">
               <el-button
                   type="primary" size="large" link
