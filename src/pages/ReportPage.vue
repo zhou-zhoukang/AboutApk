@@ -185,12 +185,14 @@
 </template>
 
 <script lang="ts" setup>
+// TODO 新增 URL/SDK 的过滤
 import {ref, watch} from 'vue'
 import { ElMessageBox } from 'element-plus'
-import DVM_PERMISSIONS from '@/data/dvm_permission';
+import DVM_PERMISSIONS from '@/data/DvmPermission';
 import OutputUtils from '@/utils/OutputUtils'
 import UrlUtils from '@/utils/UrlUtils'
 import AnalysisService from '@/service/AnalysisService'
+import WhiteList from "@/data/WhiteList";
 
 const props = defineProps<{
   analysisNo: string;
@@ -403,13 +405,9 @@ function GetStaticData(Data){
     };
   });
 
-  urls.value = Data.urls.map((item: string) => {
-    return {["url"]: item};
-  });
+  urls.value = UrlFilter(Data.urls)
 
-  sdks.value = Data.sdks.map((item: string) => {
-    return {["sdk"]: item};
-  });
+  sdks.value = SdkFilter(Data.sdks)
 }
 
 // 获取图片
@@ -448,9 +446,8 @@ const RequestForReport = () => {
         if (dynamicStatus === "Success") {
           console.log('动态分析完成！');
           const Data = response.message
-          urls.value = Data.urls.map((item: string) => {
-            return {["url"]: item};
-          });
+          urls.value = UrlFilter(Data.urls)
+
           screenContent.value = Data.screenContent
           dynamicLoading.value = false
         } else if (dynamicStatus !== "Analysing") {
@@ -500,6 +497,35 @@ const GetJudgeResult = () => {
             }
         ).then(() => {}).catch(() => {})
       });
+}
+
+/**
+ * 通过给定的正则表达式列表来过滤指定数组
+ * */
+const Filter = (array: string[], filterRegex: RegExp[]) => {
+  return array
+      .filter((elem: string) => {
+        let flag = true
+        filterRegex.forEach((regex) => {
+          if (regex.test(elem))
+            flag = false
+        })
+        return flag
+      })
+}
+
+const UrlFilter = (urls: string[]) => {
+  return Filter(urls, WhiteList.UrlWhiteList)
+      .map((item: string) => {
+        return {["url"]: item};
+      })
+}
+
+const SdkFilter = (sdks: string[]) => {
+  return Filter(sdks, WhiteList.SdkWhiteList)
+      .map((item: string) => {
+        return {["sdk"]: item};
+      })
 }
 </script>
 
