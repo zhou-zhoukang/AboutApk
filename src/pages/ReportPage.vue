@@ -411,13 +411,13 @@ const GetStaticData = (Data: any) => {
   sdks.value = SdkFilter(Data.sdks)
 }
 
-// 获取图片
+// 获取图片 URL
 const GetScreencaps = () => {
   AnalysisService.getScreencaps(props.analysisNo)
       .then(response => {
         console.log('获取图片成功!');
         response.message.forEach((uri: string) => {
-          imageUrls.value.push(UrlUtils.staticImageUrl(uri));
+          imageUrls.value.push(`${import.meta.env.VITE_APP_API_URL}${uri}`);
         });
       })
       .catch(error => {
