@@ -173,10 +173,10 @@
     <template #footer>
       <div class="dialog-footer">
         <el-button @click="CloseDialog">关闭</el-button>
-        <el-button type="primary" color="#725feb" @click="ProofPDF">
+        <el-button type="primary" color="#725feb" @click="PrintPDF">
           导出为 .pdf
         </el-button>
-        <el-button type="primary" color="#725feb" @click="ProofWord">
+        <el-button type="primary" color="#725feb" @click="PrintWord">
           导出为 .docx
         </el-button>
       </div>
@@ -290,7 +290,7 @@ const HandleDialogClose = () => {
 
 // 根据不同状态获得颜色
 const GetColorByStatus = (status: string)=>{
-  let color = ''
+  let color
   if (status === '正常')
     color = '#17a2b8'
   else if (status === '危险')
@@ -308,11 +308,11 @@ const CloseDialog = () => {
   StopTimer()
 }
 
-const ProofPDF = () => {
-  OutputUtils.downloadPDF(document.getElementById("Result"), "检测报告")
+const PrintPDF = () => {
+  OutputUtils.downloadPDF(document.getElementById("Result")!, `${APK.value.app_name}-检测报告`)
 }
 
-const ProofWord = () => {
+const PrintWord = () => {
   OutputUtils.downloadWord({
     name: "title"
   })
@@ -368,7 +368,7 @@ const StopTimer = () => {
 /**
  * 为分析结果赋值
  * */
-function GetStaticData(Data){
+const GetStaticData = (Data: any) => {
   APK.value.package_name = Data.packageName
   APK.value.app_name = Data.name
   APK.value.size = Data.size/1024
@@ -377,7 +377,8 @@ function GetStaticData(Data){
   VersionInfo.value.TargetSDKVersion = Data.versionInfo.targetSdkVersion
   VersionInfo.value.CompileSDKVersion = Data.versionInfo.compileSdkVersion
 
-  const updateSignatureInfo = (certification) => {
+  type Certification = typeof signatureInfo.value
+  const updateSignatureInfo = (certification: Certification) => {
     signatureInfo.value.subject = certification.subject
     signatureInfo.value.md5 = certification.md5
     signatureInfo.value.sha1 = certification.sha1
@@ -393,10 +394,10 @@ function GetStaticData(Data){
 
   iconImage.value = "data:image/png;base64," + Data.icon
 
-  permissionData.value = Data.permissions.map(permission => {
+  permissionData.value = Data.permissions.map((permission: string) => {
     const package_list = permission.split(".");
     const permission_name = package_list[package_list.length - 1];
-    const permission_info = DVM_PERMISSIONS[permission_name] === undefined ? ['未知', '未知', '未知'] : DVM_PERMISSIONS[permission_name]
+    const permission_info = (DVM_PERMISSIONS[permission_name] === undefined) ? ['未知', '未知', '未知'] : DVM_PERMISSIONS[permission_name]
     return {
       permissions: permission_name,
       status: permission_info[0],
@@ -415,7 +416,7 @@ const GetScreencaps = () => {
   AnalysisService.getScreencaps(props.analysisNo)
       .then(response => {
         console.log('获取图片成功!');
-        response.message.forEach(uri => {
+        response.message.forEach((uri: string) => {
           imageUrls.value.push(UrlUtils.staticImageUrl(uri));
         });
       })
