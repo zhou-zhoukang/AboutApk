@@ -1,6 +1,6 @@
 {
   "name": "scam-detector",
-  "version": "3.7",
+  "version": "3.8",
   "private": true,
   "author": "钱包守护者队",
   "description": "ScamDetector 是一个检测安卓应用是否涉诈的软件分析工具",

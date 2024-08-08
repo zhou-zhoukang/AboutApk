@@ -61,7 +61,7 @@ const toggleDark = useToggle(isDark)
 </template>
 
 <script>
-import {House, List} from "@element-plus/icons-vue";
+import {DataAnalysis, House, List} from "@element-plus/icons-vue";
 
 export default {
   name: "APP",
@@ -76,11 +76,17 @@ export default {
           icon: House
         },
         {
+          path: "/page/analysis_list",
+          name: "analysis_list",
+          label: "分析列表",
+          icon: DataAnalysis
+        },
+        {
           path: "/page/blacklist",
           name: "blacklist",
           label: "黑白名单",
           icon: List
-        },
+        }
       ]
     };
   },

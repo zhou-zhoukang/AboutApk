@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import BlackListPage from '@/pages/BlackListPage.vue'
 import HomePage from '@/pages/HomePage.vue'
+import AnalysisListPage from '@/pages/AnalysisListPage.vue'
+import BlacklistPage from '@/pages/BlacklistPage.vue'
 
 const routes = [
     { path: '/', redirect: '/page/home' },
@@ -11,10 +12,15 @@ const routes = [
         component: HomePage
     },
     {
-        path: '/page/blacklist',
-        name: 'BlackList',
-        component: BlackListPage
+        path: '/page/analysis_list',
+        name: 'analysis_list',
+        component: AnalysisListPage
     },
+    {
+        path: '/page/blacklist',
+        name: 'blacklist',
+        component: BlacklistPage
+    }
 ]
 
 const router = createRouter({
