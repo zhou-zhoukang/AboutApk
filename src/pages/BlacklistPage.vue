@@ -3,6 +3,14 @@ import {onMounted, ref} from "vue";
 import BlacklistService from "@/service/BlacklistService";
 
 const whitelistData = ref<ApkWhitelist[]>([])
+const currentData = ref<ApkWhitelist>({
+  id: 0,
+  packageName: "",
+  appName: "",
+  md5: ""
+})
+const dialogVisible = ref(false)
+const addOrUpdate = ref("添加")
 
 onMounted(() => {
   BlacklistService.findAllWhitelist()
@@ -11,7 +19,15 @@ onMounted(() => {
       })
 })
 
+const handleWhitelistAdd = () => {
+  dialogVisible.value = true
+  addOrUpdate.value = "添加"
+
+}
+
 const handleWhitelistEdit = (index: number, apkWhitelist: ApkWhitelist) => {
+  dialogVisible.value = true
+  addOrUpdate.value = "修改"
 
 }
 
@@ -19,12 +35,28 @@ const handleWhitelistDelete = (index: number, apkWhitelist: ApkWhitelist) => {
 
 }
 
+const handleAddOrUpdate = () => {
+
+}
+
+const CloseDialog = () => {
+  dialogVisible.value = false
+}
 </script>
 
 <template>
-  <div class="blacklist-page-container">
+  <el-container class="blacklist-page-container">
     <div class="title-container">
       <h2 class="title-name">APK 白名单配置</h2>
+    </div>
+
+    <div class="search-container">
+      <el-button
+        icon="plus"
+        @click="handleWhitelistAdd()"
+      >
+        添加
+      </el-button>
     </div>
 
     <el-table
@@ -32,7 +64,6 @@ const handleWhitelistDelete = (index: number, apkWhitelist: ApkWhitelist) => {
         border stripe
         align="center"
         height="100%"
-        style="width: 70%; margin:auto"
     >
       <el-table-column
           prop="packageName"
@@ -64,14 +95,32 @@ const handleWhitelistDelete = (index: number, apkWhitelist: ApkWhitelist) => {
         </template>
       </el-table-column>
     </el-table>
-  </div>
+
+
+  </el-container>
+
+  <el-dialog
+      :title="addOrUpdate"
+      v-model="dialogVisible"
+  >
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button @click="CloseDialog">关闭</el-button>
+        <el-button type="primary" color="#725feb" @click="handleAddOrUpdate">
+          {{ addOrUpdate }}
+        </el-button>
+      </div>
+    </template>
+  </el-dialog>
 </template>
 
 <style scoped>
 .blacklist-page-container {
   height: 100%;
+  width: 70%;
   display: flex;
   flex-direction: column;
+  margin: auto;
 }
 
 .title-container {
@@ -80,5 +129,11 @@ const handleWhitelistDelete = (index: number, apkWhitelist: ApkWhitelist) => {
 
 .title-name {
   font-weight: bold;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 </style>
