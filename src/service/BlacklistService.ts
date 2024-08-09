@@ -9,16 +9,40 @@ const findAllWhitelist = async () => {
     }
 }
 
-const addWhitelist = () => {
-
+const addWhitelist = async (apk: ApkWhitelist) => {
+    const formData = new FormData();
+    formData.append('packageName', apk.packageName)
+    formData.append('appName', apk.appName)
+    formData.append('md5', apk.md5)
+    const res = await axios.post("/api/whitelist/add", formData)
+    try {
+        return res.data;
+    } catch (error) {
+        return error;
+    }
 }
 
-const updateWhitelist = () => {
-
+const updateWhitelist = async (apk: ApkWhitelist) => {
+    const formData = new FormData();
+    formData.append('id', apk.id.toString())
+    formData.append('packageName', apk.packageName)
+    formData.append('appName', apk.appName)
+    formData.append('md5', apk.md5)
+    const res = await axios.put("/api/whitelist/update", formData)
+    try {
+        return res.data;
+    } catch (error) {
+        return error;
+    }
 }
 
-const deleteWhitelist = () => {
-
+const deleteWhitelist = async (id: number) => {
+    const res = await axios.delete(`/api/whitelist/delete/${id}`)
+    try {
+        return res.data;
+    } catch (error) {
+        return error;
+    }
 }
 
 const BlacklistService = {

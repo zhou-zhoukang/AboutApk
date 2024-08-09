@@ -87,6 +87,7 @@ export default {
             <template #default="scope">
               <el-button
                   type="primary" size="large" link
+                  icon="zoom-in"
                   @click.prevent="showReport(scope.row.analysisNo)"
               >
                 详细信息
@@ -115,6 +116,7 @@ export default {
             <template #default="scope">
               <el-button
                   type="primary" size="large" link
+                  icon="zoom-in"
                   @click.prevent="showReport(scope.row.analysisNo)"
               >
                 详细信息
@@ -156,7 +158,8 @@ export default {
   justify-content: center;
 }
 
-.el-table >>> .header-row {
+
+.header-cell {
   color: black;
   font-size: 20px;
 }
