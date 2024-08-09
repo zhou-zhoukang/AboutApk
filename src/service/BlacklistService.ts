@@ -38,6 +38,7 @@ const updateWhitelist = async (apk: ApkWhitelist) => {
 
 const deleteWhitelist = async (id: number) => {
     const res = await axios.delete(`/api/whitelist/delete/${id}`)
+    console.log(`/api/whitelist/delete/${id}`)
     try {
         return res.data;
     } catch (error) {
