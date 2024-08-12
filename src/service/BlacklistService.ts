@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const findAllWhitelist = async () => {
+const findAll = async () => {
     const res = await axios.get("/api/whitelist/find_all")
     try {
         return res.data;
@@ -9,7 +9,7 @@ const findAllWhitelist = async () => {
     }
 }
 
-const addWhitelist = async (apk: ApkWhitelist) => {
+const add = async (apk: ApkWhitelist) => {
     const formData = new FormData();
     formData.append('packageName', apk.packageName)
     formData.append('appName', apk.appName)
@@ -22,7 +22,7 @@ const addWhitelist = async (apk: ApkWhitelist) => {
     }
 }
 
-const updateWhitelist = async (apk: ApkWhitelist) => {
+const update = async (apk: ApkWhitelist) => {
     const formData = new FormData();
     formData.append('id', apk.id.toString())
     formData.append('packageName', apk.packageName)
@@ -36,9 +36,8 @@ const updateWhitelist = async (apk: ApkWhitelist) => {
     }
 }
 
-const deleteWhitelist = async (id: number) => {
+const deleteOne = async (id: number) => {
     const res = await axios.delete(`/api/whitelist/delete/${id}`)
-    console.log(`/api/whitelist/delete/${id}`)
     try {
         return res.data;
     } catch (error) {
@@ -47,10 +46,10 @@ const deleteWhitelist = async (id: number) => {
 }
 
 const BlacklistService = {
-    addWhitelist: addWhitelist,
-    updateWhitelist: updateWhitelist,
-    findAllWhitelist: findAllWhitelist,
-    deleteWhitelist: deleteWhitelist
+    add: add,
+    update: update,
+    findAll: findAll,
+    deleteOne: deleteOne
 }
 
 export default BlacklistService

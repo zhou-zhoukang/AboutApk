@@ -15,7 +15,7 @@ const dialogVisible = ref(false)
 const addOrUpdate = ref("添加")
 
 onMounted(() => {
-  BlacklistService.findAllWhitelist()
+  BlacklistService.findAll()
       .then(response => {
         whitelistData.value = response
       })
@@ -46,7 +46,7 @@ const handleWhitelistDelete = (index: number, apkWhitelist: ApkWhitelist) => {
     confirmButtonText: 'OK',
     callback: (action: Action) => {
       if (action === 'confirm') {
-        BlacklistService.deleteWhitelist(apkWhitelist.id)
+        BlacklistService.deleteOne(apkWhitelist.id)
         whitelistData.value.splice(currentIndex.value, 1)
         ElMessage({
           type: 'warning',
@@ -59,14 +59,14 @@ const handleWhitelistDelete = (index: number, apkWhitelist: ApkWhitelist) => {
 
 const handleAddOrUpdate = () => {
   if (addOrUpdate.value === "添加") {
-    BlacklistService.addWhitelist(currentData.value)
+    BlacklistService.add(currentData.value)
     whitelistData.value.push(currentData.value)
     ElMessage({
       type: 'success',
       message: `${currentData.value.appName}记录新增成功`,
     })
   } else if (addOrUpdate.value === "修改") {
-    BlacklistService.updateWhitelist(currentData.value)
+    BlacklistService.update(currentData.value)
     whitelistData.value[currentIndex.value] = currentData.value
     ElMessage({
       type: 'success',

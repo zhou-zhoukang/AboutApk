@@ -43,6 +43,12 @@ const toggleDark = useToggle(isDark)
             >
               切换主题
             </el-menu-item>
+            <el-menu-item
+              index="2-2"
+              @click="configFilter()"
+              >
+              配置过滤器
+            </el-menu-item>
           </el-sub-menu>
         </el-menu>
       </el-header>
@@ -55,9 +61,10 @@ const toggleDark = useToggle(isDark)
           <component :is="Component" v-if="!$route.meta.keepAlive"/>
         </RouterView>
       </el-main>
-
     </el-container>
   </div>
+
+
 </template>
 
 <script>
@@ -95,6 +102,9 @@ export default {
       if (this.$route.path !== item.path && !(this.$route.path === '/page/home' && (item.path === '/'))) {
         this.$router.push(item.path)
       }
+    },
+    configFilter() {
+
     }
   }
 }
