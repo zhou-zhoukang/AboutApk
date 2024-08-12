@@ -190,18 +190,29 @@ import { ElMessageBox } from 'element-plus'
 import DVM_PERMISSIONS from '@/data/DvmPermission';
 import OutputUtils from '@/utils/OutputUtils'
 import AnalysisService from '@/service/AnalysisService'
-import WhiteList from "@/data/WhiteList";
+import FilterService from "@/service/FilterService";
 
 const props = defineProps<{
   analysisNo: string;
   forceShow: boolean;
 }>();
 
+const urlFilterData = ref<RegExp[]>([])
+const sdkFilterData = ref<RegExp[]>([])
+
 /**
  * 若 props 发生变化，则显示对话框报告并开启 Timer
  * */
 watch(props, () => {
   dialogVisible.value = true
+  FilterService.findAll("sdk")
+      .then((res) => {
+        sdkFilterData.value = res.map((item: Filter) => RegExp(item.rule))
+      })
+  FilterService.findAll("url")
+      .then((res) => {
+        urlFilterData.value = res.map((item: Filter) => RegExp(item.rule))
+      })
   StartTimer()
 })
 
@@ -514,14 +525,14 @@ const Filter = (array: string[], filterRegex: RegExp[]) => {
 }
 
 const UrlFilter = (urls: string[]) => {
-  return Filter(urls, WhiteList.UrlWhiteList)
+  return Filter(urls, urlFilterData.value)
       .map((item: string) => {
         return {["url"]: item};
       })
 }
 
 const SdkFilter = (sdks: string[]) => {
-  return Filter(sdks, WhiteList.SdkWhiteList)
+  return Filter(sdks, sdkFilterData.value)
       .map((item: string) => {
         return {["sdk"]: item};
       })
