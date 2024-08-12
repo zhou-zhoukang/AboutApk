@@ -23,7 +23,7 @@ interface BlackListData {
 }
 
 const analysisNum = ref<string>('')
-const forceShowReport = ref<boolean>(false)  // 用于强制显示 Report
+const forceShowReport = ref(false)  // 用于强制显示 Report
 const blackList = ref<BlackListData[]>([])
 const whiteList = ref<BlackListData[]>([])
 
@@ -70,7 +70,7 @@ export default {
   <el-container class="Container">
     <el-aside class="Side">
       <div class="Title">
-        <strong>App黑名单</strong>
+        <strong>APK检测为黑</strong>
       </div>
       <div class="Table">
         <el-table
@@ -100,7 +100,7 @@ export default {
 
     <el-aside class="Side">
       <div class="Title">
-        <strong>App白名单</strong>
+        <strong>APK检测为普通</strong>
       </div>
       <div class="Table">
         <el-table

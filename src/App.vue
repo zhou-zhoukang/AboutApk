@@ -1,8 +1,17 @@
 <script setup>
 import {Setting} from "@element-plus/icons-vue";
 import { useDark, useToggle } from '@vueuse/core'
+import FilterConfigPage from "@/pages/FilterConfigPage.vue";
+import {ref} from "vue";
+// TODO 主题切换功能
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
+
+// filter page 显示功能
+const showFilterConfigPage = ref(false)
+const configFilter = () => {
+  showFilterConfigPage.value = !showFilterConfigPage.value
+}
 </script>
 
 <template>
@@ -64,7 +73,7 @@ const toggleDark = useToggle(isDark)
     </el-container>
   </div>
 
-
+  <FilterConfigPage :force-show="showFilterConfigPage"/>
 </template>
 
 <script>
@@ -91,7 +100,7 @@ export default {
         {
           path: "/page/blacklist",
           name: "blacklist",
-          label: "黑白名单",
+          label: "白名单",
           icon: List
         }
       ]
@@ -102,9 +111,6 @@ export default {
       if (this.$route.path !== item.path && !(this.$route.path === '/page/home' && (item.path === '/'))) {
         this.$router.push(item.path)
       }
-    },
-    configFilter() {
-
     }
   }
 }

@@ -12,7 +12,7 @@ const currentData = ref<ApkWhitelist>({
 })
 const currentIndex = ref(0)
 const dialogVisible = ref(false)
-const addOrUpdate = ref("添加")
+const addOrUpdate = ref<"添加" | "修改">("添加")
 
 onMounted(() => {
   BlacklistService.findAll()
@@ -42,8 +42,7 @@ const handleWhitelistEdit = (index: number, apkWhitelist: ApkWhitelist) => {
 const handleWhitelistDelete = (index: number, apkWhitelist: ApkWhitelist) => {
   currentIndex.value = index
   ElMessageBox.alert(`确定删除本条白名单记录：${apkWhitelist.appName}`, '提示', {
-    // autofocus: false,
-    confirmButtonText: 'OK',
+    confirmButtonText: '确定',
     callback: (action: Action) => {
       if (action === 'confirm') {
         BlacklistService.deleteOne(apkWhitelist.id)
@@ -59,6 +58,7 @@ const handleWhitelistDelete = (index: number, apkWhitelist: ApkWhitelist) => {
 
 const handleAddOrUpdate = () => {
   if (addOrUpdate.value === "添加") {
+    // TODO 这里需要得到后端返回的 id，并修改对应的 id，否则更新时会失败
     BlacklistService.add(currentData.value)
     whitelistData.value.push(currentData.value)
     ElMessage({
