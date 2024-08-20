@@ -149,7 +149,7 @@
         <div class="row">
           <div class="row-body">
             <el-card class="card">
-              <strong>研判结果（仅供参考）</strong><br>
+              <strong>研判结果</strong><br>
               <div v-for="item in resultData">
                 <br>
                 该应用可能涉及 {{item.val}}<br>
