@@ -381,7 +381,7 @@ const GetStaticData = (Data: any) => {
   APK.value.package_name = Data.packageName
   APK.value.app_name = Data.name
   APK.value.size = Data.size/1024
-  APK.value.file_name = Data.absolutePath.split('\\').pop()
+  APK.value.file_name = Data.absolutePath.split('/').pop()
   VersionInfo.value.minSDKVersion = Data.versionInfo.minSdkVersion
   VersionInfo.value.TargetSDKVersion = Data.versionInfo.targetSdkVersion
   VersionInfo.value.CompileSDKVersion = Data.versionInfo.compileSdkVersion

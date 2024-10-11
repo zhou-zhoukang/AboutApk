@@ -70,7 +70,7 @@ export default {
   <el-container class="Container">
     <el-aside class="Side">
       <div class="Title">
-        <strong>APK检测为黑</strong>
+        <strong>APK检测为非法</strong>
       </div>
       <div class="Table">
         <el-table
@@ -100,7 +100,7 @@ export default {
 
     <el-aside class="Side">
       <div class="Title">
-        <strong>APK检测为普通</strong>
+        <strong>APK检测为合法</strong>
       </div>
       <div class="Table">
         <el-table
